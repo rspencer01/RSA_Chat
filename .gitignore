@@ -1,0 +1,9 @@
+# All sent or received messages
+messages/
+
+# Backups
+*.bak
+*~
+
+# Compiled python
+*.pyc
