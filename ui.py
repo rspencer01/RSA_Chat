@@ -33,9 +33,6 @@ def updateMessageScreen():
   messagePad.border(0)
   messagePad.refresh()
 
-def sendMessage(text):
-  addMessage(text,"ME","NOW")
-  updateMessageScreen()
 
 def cleanup():
   screen.keypad(0)

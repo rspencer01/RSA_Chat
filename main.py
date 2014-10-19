@@ -1,8 +1,20 @@
 import curses
 import ui
+import os
 
+def loadMessagesFromFile(directory):
+  for fn in os.listdir(directory):
+    ui.addMessage(fn,'','')
+  ui.updateMessageScreen()
+
+def sendMessage(text):
+  ui.addMessage(text,"ME","NOW")
+  ui.updateMessageScreen()
 
 if __name__=="__main__":
+
+  loadMessagesFromFile('messages/')
+
   buff=''
   while 1:
     a = ui.screen.getch()
