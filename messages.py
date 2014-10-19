@@ -9,14 +9,14 @@ class message:
   def loadFromFile(self,fn):
     f = open('messages/'+fn,'r')
     lines = f.readlines()
-    self.time = lines[0]
-    self.sender = lines[1]
+    self.time = lines[0].rstrip()
+    self.sender = lines[1].rstrip()
     self.message = ''.join(lines[2:])
     f.close()
   def saveToFile(self,fn=None):
     if fn==None: fn = self.time
     f = open('messages/'+fn,'w')
-    f.write(strftime('%Y-%m-%d %H:%M:%S')+'\n')
+    f.write(strftime('%Y-%m-%d %H-%M-%S')+'\n')
     f.write(self.sender+'\n')
     f.write(self.message)
     f.close()

@@ -13,6 +13,7 @@ def loadMessagesFromFile(directory):
   ui.updateMessageScreen()
 
 def sendMessage(text):
+  ui.addStatus("Sending message")
   mesg = message(text,sender=username)
   mesg.saveToFile()
   ui.addMessage(mesg)
