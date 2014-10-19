@@ -14,9 +14,9 @@ def addStatus(text):
   statusPad.border(0)
   statusPad.refresh()
 
-def addMessage(text,sender,time):
-  messages.append(splitAndPad(time+" - "+sender+':',screenW-STATUS_WIDTH-4)[0])
-  for t in splitAndPad(text,screenW-STATUS_WIDTH-4):
+def addMessage(msg):
+  messages.append(splitAndPad(msg.time+" - "+msg.sender+':',screenW-STATUS_WIDTH-4)[0])
+  for t in splitAndPad(msg.message,screenW-STATUS_WIDTH-4):
     messages.append(t)
 
 def scrollMessages(scroll):
@@ -38,6 +38,39 @@ def cleanup():
   screen.keypad(0)
   curses.echo()
   curses.endwin()
+  
+def getLogin():
+  buff = ''
+  while 1:
+    screen.addstr(screenH-3,0,' '*(screenW-4))
+    screen.addstr(screenH-3,0,'username > '+buff) 
+    a = screen.getch()
+    if a==-1:
+      continue
+    elif a==10:
+      break
+    elif a==8:
+      if buff!='':
+        buff = buff[:-1]
+    else:
+      buff += chr(a)  
+  username = buff
+  buff = ''
+  while 1:
+    screen.addstr(screenH-3,0,' '*(screenW-4))
+    screen.addstr(screenH-3,0,'password > '+'*'*len(buff)) 
+    a = screen.getch()
+    if a==-1:
+      continue
+    elif a==10:
+      break
+    elif a==8:
+      if buff!='':
+        buff = buff[:-1]
+    else:
+      buff += chr(a)  
+  password = buff
+  return (username,password)
 
 STATUS_WIDTH = 10
 
